@@ -19,27 +19,27 @@ By combining RDKit computational chemistry engines with a cyclic LangGraph multi
 | ![Analog Visualizer](assets/tab2_analogs.png) | ![Human in the Loop](assets/tab3_governance.png) |
 
 ---
-## 🔄 System Architecture & Data Motion Flowchart
+##  System Architecture & Data Motion Flowchart
 
 ```mermaid
 graph TD
-    subgraph UI_Layer["🖥️ Streamlit User Interface"]
+    subgraph UI_Layer[" Streamlit User Interface"]
         UI["• PubChem SMILES Auto-Lookup<br/>• 2D RDKit Structure Renderer<br/>• 3D Mol / Py3Dmol Viewer<br/>• HITL Governance Approval Console"]
     end
 
-    subgraph API_Layer["⚡ FastAPI API Gateway Layer"]
+    subgraph API_Layer[" FastAPI API Gateway Layer"]
         API["• Request Validation & Rate Limiting<br/>• Chemical Prompt Guard (Safety & Toxicity Filter)"]
     end
 
-    subgraph Comp_Engine["🧪 RDKit Computational Engine"]
+    subgraph Comp_Engine[" RDKit Computational Engine"]
         RDKit["• MolWt, LogP, TPSA Calculation<br/>• Lipinski Rule of 5 Evaluation<br/>• Thermodynamic ΔG & Kd Estimation"]
     end
 
-    subgraph Agent_Orch["🤖 LangGraph Multi-Agent Orchestration"]
+    subgraph Agent_Orch[" LangGraph Multi-Agent Orchestration"]
         Graph["• Researcher Agent (Liability Scan)<br/>• Critic Agent (ADMET Guardrails)<br/>• Bioisostere Generator"]
     end
 
-    subgraph Governance["🛡️ Human-in-the-Loop RBAC System"]
+    subgraph Governance[" Human-in-the-Loop RBAC System"]
         HITL["• Role Verification (senior_chemist / lead_chemist / junior_analyst)<br/>• Synthesis & Docking Approval Workflow"]
     end
 
