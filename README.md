@@ -48,4 +48,3 @@ graph TD
     API_Layer --> Agent_Orch
     Comp_Engine -->|"Combined JSON Response Payload"| Governance
     Agent_Orch -->|"Combined JSON Response Payload"| Governance
----
