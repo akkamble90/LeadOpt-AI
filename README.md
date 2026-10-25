@@ -19,22 +19,24 @@ By combining RDKit computational chemistry engines with a cyclic LangGraph multi
 | ![Analog Visualizer](assets/tab2_analogs.png) | ![Human in the Loop](assets/tab3_governance.png) |
 
 ---
-##  System Architecture & Data Motion Flowchart
+## 🔄 System Architecture & Data Motion Flowchart
 
 ```mermaid
 graph TD
-    UI[" Streamlit User Interface<br/>• PubChem SMILES Auto-Lookup<br/>• 2D RDKit Structure Renderer<br/>• 3D Mol / Py3Dmol Viewer<br/>• HITL Governance Approval Console"]
+    UI["<div style='padding:8px; min-width:260px;'><b> Streamlit User Interface</b><br/>• PubChem SMILES Auto-Lookup<br/>• 2D RDKit Structure Renderer<br/>• 3D Mol / Py3Dmol Viewer<br/>• HITL Governance Approval Console</div>"]
     
-    API[" FastAPI API Gateway Layer<br/>• Request Validation & Rate Limiting<br/>• Chemical Prompt Guard (Safety & Toxicity Filter)"]
+    API["<div style='padding:8px; min-width:260px;'><b> FastAPI API Gateway Layer</b><br/>• Request Validation & Rate Limiting<br/>• Chemical Prompt Guard (Safety & Toxicity Filter)</div>"]
     
-    RDKit[" RDKit Computational Engine<br/>• MolWt, LogP, TPSA Calculation<br/>• Lipinski Rule of 5 Evaluation<br/>• Thermodynamic ΔG & Kd Estimation"]
+    RDKit["<div style='padding:8px; min-width:240px;'><b> RDKit Computational Engine</b><br/>• MolWt, LogP, TPSA Calculation<br/>• Lipinski Rule of 5 Evaluation<br/>• Thermodynamic ΔG & Kd Estimation</div>"]
     
-    Graph[" LangGraph Multi-Agent Orchestration<br/>• Researcher Agent (Liability Scan)<br/>• Critic Agent (ADMET Guardrails)<br/>• Bioisostere Generator"]
+    Graph["<div style='padding:8px; min-width:240px;'><b> LangGraph Multi-Agent Orchestration</b><br/>• Researcher Agent (Liability Scan)<br/>• Critic Agent (ADMET Guardrails)<br/>• Bioisostere Generator</div>"]
     
-    HITL[" Human-in-the-Loop (HITL) RBAC System<br/>• Role Verification (senior_chemist / lead_chemist / junior_analyst)<br/>• Synthesis & Docking Approval Workflow"]
+    HITL["<div style='padding:8px; min-width:280px;'><b> Human-in-the-Loop (HITL) RBAC System</b><br/>• Role Verification (senior_chemist / lead_chemist / junior_analyst)<br/>• Synthesis & Docking Approval Workflow</div>"]
 
     UI -->|"HTTP POST (Payload: SMILES, Target, Role)"| API
     API --> RDKit
+
     API --> Graph
     RDKit -->|"Combined JSON Response Payload"| HITL
     Graph -->|"Combined JSON Response Payload"| HITL
+---
