@@ -22,37 +22,43 @@ By combining RDKit computational chemistry engines with a cyclic LangGraph multi
 
 ##  System Architecture & Data Motion Flowchart
 
+---
+
+
+
+````markdown
+##  System Architecture & Data Motion Flowchart
+
+```text
 ┌──────────────────────────────────────────────────────────────────────────────────┐
 │                             Streamlit User Interface                             │
 │       • PubChem SMILES Auto-Lookup   • 2D RDKit Structure Renderer              │
 │       • 3D Mol / Py3Dmol Viewer      • HITL Governance Approval Console          │
 └──────────────────────────────────────┬───────────────────────────────────────────┘
-│ HTTP POST (Payload: SMILES, Target, Role)
-▼
+                                       │ HTTP POST (Payload: SMILES, Target, Role)
+                                       ▼
 ┌──────────────────────────────────────────────────────────────────────────────────┐
 │                         FastAPI API Gateway Layer                                │
 │       • Request Validation & Rate Limiting                                      │
 │       • Chemical Prompt Guard (Safety & Toxicity Filter)                         │
 └──────────────────┬───────────────────────────────────────────┬───────────────────┘
-│                                           │
-▼                                           ▼
+                   │                                           │
+                   ▼                                           ▼
 ┌──────────────────────────────────────┐   ┌───────────────────────────────────────┐
 │     RDKit Computational Engine       │   │   LangGraph Multi-Agent Orchestration │
 │ • MolWt, LogP, TPSA Calculation      │   │ • Researcher Agent (Liability Scan)  │
 │ • Lipinski Rule of 5 Evaluation      │   │ • Critic Agent (ADMET Guardrails)    │
 │ • Thermodynamic ΔG & Kd Estimation   │   │ • Bioisostere Generator               │
 └──────────────────┬───────────────────┘   └───────────────────┬───────────────────┘
-│                                           │
-└───────────────────┬───────────────────────┘
-│ Combined JSON Response Payload
-▼
+                   │                                           │
+                   └───────────────────┬───────────────────────┘
+                                       │ Combined JSON Response Payload
+                                       ▼
 ┌──────────────────────────────────────────────────────────────────────────────────┐
 │                      Human-in-the-Loop (HITL) RBAC System                        │
 │   • Role Verification (senior_chemist / lead_chemist / junior_analyst)           │
 │   • Synthesis & Docking Approval Workflow                                       │
 └──────────────────────────────────────────────────────────────────────────────────┘
-
-
 ---
 
 ##  Layer-by-Layer Tech Stack Breakdown
