@@ -1,0 +1,15 @@
+﻿# Python & Environment
+__pycache__/
+*.py[cod]
+*.class
+venv/
+.env
+.env.local
+
+# Streamlit & Cache
+.streamlit/
+.cache/
+
+# IDE settings
+.vscode/
+.idea/

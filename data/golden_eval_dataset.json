@@ -1,0 +1,28 @@
+{
+  "question": [
+    "What is the effect of replacing the ester group in aspirin analogues?",
+    "How does high lipophilicity affect drug candidates in lead optimization?",
+    "What is the bioisosteric strategy to prevent rapid hepatic hydrolysis?"
+  ],
+  "contexts": [
+    [
+      "Replacing ester groups with oxadiazole or fluorine bioisosteres extends metabolic half-life while retaining binding kinetics and affinity (IC50 < 20nM)."
+    ],
+    [
+      "High lipophilicity (LogP > 4.5) increases the risk of poor aqueous solubility, non-specific binding, and off-target hERG ion channel inhibition."
+    ],
+    [
+      "Replacing hydrolytically labile esters with 1,2,4-oxadiazole ring systems provides a classical bioisosteric replacement that resists esterase cleavage."
+    ]
+  ],
+  "answer": [
+    "Replacing ester groups with oxadiazole bioisosteres improves metabolic stability and extends half-life while preserving target binding affinity.",
+    "LogP values above 4.5 flag poor solubility risks and potential toxicity due to off-target hERG binding.",
+    "Substituting carboxylate esters with 1,2,4-oxadiazoles prevents rapid esterase-mediated enzymatic hydrolysis."
+  ],
+  "ground_truth": [
+    "Bioisosteric replacement of esters with oxadiazoles extends clearance half-life and prevents rapid hydrolysis without sacrificing target binding affinity.",
+    "High LogP (>4.5) negatively impacts ADMET profiles by causing poor solubility and hERG liability.",
+    "Oxadiazole and fluorine bioisosteres protect labile scaffolds against hepatic enzymatic hydrolysis."
+  ]
+}

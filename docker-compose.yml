@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  # 1. PostgreSQL Database with pgvector Extension
+  db:
+    image: pgvector/pgvector:pg16
+    container_name: leadopt_pgvector_db
+    restart: always
+    environment:
+      POSTGRES_DB: leadopt_db
+      POSTGRES_USER: chemuser
+      POSTGRES_PASSWORD: chempassword
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U chemuser -d leadopt_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # 2. LeadOpt-AI FastAPI Gateway Container
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: leadopt_ai_gateway
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - PRIMARY_MODEL=openai/gpt-oss-120b
+      - POSTGRES_DB=leadopt_db
+      - POSTGRES_USER=chemuser
+      - POSTGRES_PASSWORD=chempassword
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
+      - LANGCHAIN_TRACING_V2=${LANGCHAIN_TRACING_V2:-false}
+      - LANGCHAIN_PROJECT=leadopt-ai
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata:
+    driver: local

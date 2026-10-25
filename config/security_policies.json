@@ -1,0 +1,23 @@
+{
+  "banned_substances": [
+    "sarin",
+    "soman",
+    "tabun",
+    "vx_agent",
+    "vx agent",
+    "ricin",
+    "mustard_gas",
+    "mustard gas",
+    "novichok"
+  ],
+  "roles": {
+    "junior_chemist": 1,
+    "senior_chemist": 2,
+    "principal_investigator": 3
+  },
+  "clearance_levels": {
+    "public_literature": 1,
+    "internal_sar": 2,
+    "proprietary_lead": 3
+  }
+}

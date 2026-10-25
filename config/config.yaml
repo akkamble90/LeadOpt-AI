@@ -1,0 +1,20 @@
+app:
+  name: "LeadOpt-AI"
+  version: "1.0.0"
+  environment: "development"
+
+models:
+  primary_llm: "openai/gpt-oss-120b"
+  chem_embedding: "DeepChem/ChemBERTa-10M-MLM"
+  text_embedding: "all-MiniLM-L6-v2"
+  reranker_model: "cross-encoder/ms-marco-MiniLM-L-6-v2"
+
+eval_thresholds:
+  ragas_faithfulness: 0.90
+  ragas_context_recall: 0.92
+  tool_accuracy: 0.95
+  security_block_rate: 0.999
+
+security:
+  salt: "LeadOpt_Salt_2026"
+  max_prompt_length: 2000
