@@ -23,20 +23,29 @@ By combining RDKit computational chemistry engines with a cyclic LangGraph multi
 
 ```mermaid
 graph TD
-    UI["<div style='padding:8px; min-width:260px;'><b> Streamlit User Interface</b><br/>• PubChem SMILES Auto-Lookup<br/>• 2D RDKit Structure Renderer<br/>• 3D Mol / Py3Dmol Viewer<br/>• HITL Governance Approval Console</div>"]
-    
-    API["<div style='padding:8px; min-width:260px;'><b> FastAPI API Gateway Layer</b><br/>• Request Validation & Rate Limiting<br/>• Chemical Prompt Guard (Safety & Toxicity Filter)</div>"]
-    
-    RDKit["<div style='padding:8px; min-width:240px;'><b> RDKit Computational Engine</b><br/>• MolWt, LogP, TPSA Calculation<br/>• Lipinski Rule of 5 Evaluation<br/>• Thermodynamic ΔG & Kd Estimation</div>"]
-    
-    Graph["<div style='padding:8px; min-width:240px;'><b> LangGraph Multi-Agent Orchestration</b><br/>• Researcher Agent (Liability Scan)<br/>• Critic Agent (ADMET Guardrails)<br/>• Bioisostere Generator</div>"]
-    
-    HITL["<div style='padding:8px; min-width:280px;'><b> Human-in-the-Loop (HITL) RBAC System</b><br/>• Role Verification (senior_chemist / lead_chemist / junior_analyst)<br/>• Synthesis & Docking Approval Workflow</div>"]
+    subgraph UI_Layer["🖥️ Streamlit User Interface"]
+        UI["• PubChem SMILES Auto-Lookup<br/>• 2D RDKit Structure Renderer<br/>• 3D Mol / Py3Dmol Viewer<br/>• HITL Governance Approval Console"]
+    end
 
-    UI -->|"HTTP POST (Payload: SMILES, Target, Role)"| API
-    API --> RDKit
+    subgraph API_Layer["⚡ FastAPI API Gateway Layer"]
+        API["• Request Validation & Rate Limiting<br/>• Chemical Prompt Guard (Safety & Toxicity Filter)"]
+    end
 
-    API --> Graph
-    RDKit -->|"Combined JSON Response Payload"| HITL
-    Graph -->|"Combined JSON Response Payload"| HITL
+    subgraph Comp_Engine["🧪 RDKit Computational Engine"]
+        RDKit["• MolWt, LogP, TPSA Calculation<br/>• Lipinski Rule of 5 Evaluation<br/>• Thermodynamic ΔG & Kd Estimation"]
+    end
+
+    subgraph Agent_Orch["🤖 LangGraph Multi-Agent Orchestration"]
+        Graph["• Researcher Agent (Liability Scan)<br/>• Critic Agent (ADMET Guardrails)<br/>• Bioisostere Generator"]
+    end
+
+    subgraph Governance["🛡️ Human-in-the-Loop RBAC System"]
+        HITL["• Role Verification (senior_chemist / lead_chemist / junior_analyst)<br/>• Synthesis & Docking Approval Workflow"]
+    end
+
+    UI_Layer -->|"HTTP POST (Payload: SMILES, Target, Role)"| API_Layer
+    API_Layer --> Comp_Engine
+    API_Layer --> Agent_Orch
+    Comp_Engine -->|"Combined JSON Response Payload"| Governance
+    Agent_Orch -->|"Combined JSON Response Payload"| Governance
 ---
