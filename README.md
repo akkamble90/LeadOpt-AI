@@ -82,7 +82,7 @@ Critic Agent: Verifies syntheticity, Lipinski compliance, and steric constraints
 Role-Based Access Control (RBAC): Restricts high-cost molecular dynamics docking sign-offs to verified roles (senior_chemist).
 
 ---
-## 📊 Evaluation Metrics & Quantitative Optimization Scope
+##  Evaluation Metrics & Quantitative Optimization Scope
 
 LeadOpt-AI evaluates baseline compounds and generated analogs against key biophysical and pharmacokinetic metrics:
 
