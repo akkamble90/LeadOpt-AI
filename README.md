@@ -1,4 +1,4 @@
-#  LeadOpt-AI: Cheminformatics & Computational Drug Discovery Copilot
+#  LeadOpt-AI: Cheminformatics & Computational Drug Discovery Platform
 
 **LeadOpt-AI** is an enterprise-grade computational chemistry copilot and multi-agent orchestration framework designed to automate lead compound optimization, ADMET risk assessment, structural bioisosteric replacement, and 3D active site target docking evaluation. 
 
