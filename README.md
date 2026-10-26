@@ -8,8 +8,6 @@ By combining RDKit computational chemistry engines with a cyclic LangGraph multi
 
 ##  Dashboard & Interface Previews
 
-> *Note: Place your project screenshots into an `assets/` directory in your project root to render these previews.*
-
 | Tab 1: Binding & ADMET Properties | Tab 2: Multi-Agent Optimization & Analogs |
 | :---: | :---: |
 | ![Calculated Properties](assets/tab1_properties.png) | ![Agent Strategy](assets/tab2_strategy.png) |
