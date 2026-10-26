@@ -10,11 +10,11 @@ By combining RDKit computational chemistry engines with a cyclic LangGraph multi
 
 | Tab 1: Binding & ADMET Properties | Tab 2: Multi-Agent Optimization & Analogs |
 | :---: | :---: |
-| ![Calculated Properties](assets/tab1_properties.png) | ![Agent Strategy](assets/tab2_strategy.png) |
+| ![Calculated Properties](data/screenshot/ADMET_Properties.png) | ![Agent Strategy](data/screenshot_strategy.png) |
 
 | Tab 2: 2D Bioisostere Visualizer | Tab 3: Governance & RBAC Approval |
 | :---: | :---: |
-| ![Analog Visualizer](assets/tab2_analogs.png) | ![Human in the Loop](assets/tab3_governance.png) |
+| ![Analog Visualizer](data/screenshot_analogs.png) | ![Human in the Loop](data/screenshot_governance.png) |
 
 ---
 ##  System Architecture & Data Motion Flowchart
