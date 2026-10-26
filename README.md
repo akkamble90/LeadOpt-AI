@@ -14,7 +14,7 @@ By combining RDKit computational chemistry engines with a cyclic LangGraph multi
 
 | Tab 2: 2D Bioisostere Visualizer | Tab 3: Governance & RBAC Approval |
 | :---: | :---: |
-| ![Analog Visualizer](data/screenshot_2-D_and_3-D_Structure.png) | ![Human in the Loop](data/screenshot_governance.png) |
+| ![Analog Visualizer](data/screenshot_Structure.png) | ![Human in the Loop](data/screenshot_governance.png) |
 
 ---
 ##  System Architecture & Data Motion Flowchart
