@@ -5,6 +5,13 @@
 By combining RDKit computational chemistry engines with a cyclic LangGraph multi-agent loop, PostgreSQL with `pgvector`, and human-in-the-loop (HITL) governance checkpoints, LeadOpt-AI bridges high-level agentic AI reasoning with quantitative biophysical validation across a fully decoupled cloud architecture.
 
 ---
+## LeadOpt-AI is deployed as a 3-tier cloud application:
+
+- **Frontend Application UI:** [Streamlit Community Cloud](https://share.streamlit.io)
+- **Backend REST API:** [Render Web Service](https://leadopt-ai.onrender.com/docs) (`https://leadopt-ai.onrender.com`)
+- **Vector & Relational Database:** [Neon.tech Serverless PostgreSQL](https://neon.tech) (`pgvector` enabled)
+
+---
 
 
 ## Dashboard & Interface Previews
