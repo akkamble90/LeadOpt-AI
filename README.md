@@ -2,7 +2,7 @@
 
 **LeadOpt-AI** is an enterprise-grade computational chemistry copilot and multi-agent orchestration framework designed to automate lead compound optimization, ADMET risk assessment, structural bioisosteric replacement, and 3D active site target docking evaluation. 
 
-By combining RDKit computational chemistry engines with a cyclic LangGraph multi-agent loop and human-in-the-loop (HITL) governance checkpoints, LeadOpt-AI bridges high-level agentic AI reasoning with quantitative biophysical validation.
+By combining RDKit computational chemistry engines with a cyclic LangGraph multi-agent loop, PostgreSQL with `pgvector`, and human-in-the-loop (HITL) governance checkpoints, LeadOpt-AI bridges high-level agentic AI reasoning with quantitative biophysical validation across a fully decoupled cloud architecture.
 
 ---
 
@@ -24,32 +24,38 @@ By combining RDKit computational chemistry engines with a cyclic LangGraph multi
 
 ```mermaid
 graph TD
-    subgraph UI_Layer[" Streamlit User Interface"]
-        UI["• PubChem SMILES Auto-Lookup<br/>• 2D RDKit Structure Renderer<br/>• 3D Mol / Py3Dmol Viewer<br/>• HITL Governance Approval Console"]
+    subgraph UI_Layer[" Streamlit Cloud Presentation Tier (src/UI/app_gui.py)"]
+        UI["• PubChem SMILES Auto-Lookup<br/>• 2D RDKit Vector Structure Renderer<br/>• WebGL 3D Py3Dmol Active Site Viewer<br/>• Dynamic Secret Resolution (BACKEND_URL)"]
     end
 
-    subgraph API_Layer[" FastAPI API Gateway Layer"]
-        API["• Request Validation & Rate Limiting<br/>• Chemical Prompt Guard (Safety & Toxicity Filter)"]
+    subgraph API_Layer[" Render API Gateway Tier (src/api/)"]
+        API["• FastAPI + Async Uvicorn Worker<br/>• Pydantic Request/Response Validation<br/>• ChemicalPromptGuard (Toxicity & Security Filter)"]
     end
 
-    subgraph Comp_Engine[" RDKit Computational Engine"]
-        RDKit["• MolWt, LogP, TPSA Calculation<br/>• Lipinski Rule of 5 Evaluation<br/>• Thermodynamic ΔG & Kd Estimation"]
+    subgraph Comp_Engine[" RDKit & Biophysics Engine (src/tools/)"]
+        RDKit["• MolWt, LogP, TPSA Descriptor Calculations<br/>• Lipinski Rule of 5 Validation<br/>• Thermodynamic ΔG & Dissociation (Kd) Estimation"]
     end
 
-    subgraph Agent_Orch[" LangGraph Multi-Agent Orchestration"]
-        Graph["• Researcher Agent (Liability Scan)<br/>• Critic Agent (ADMET Guardrails)<br/>• Bioisostere Generator"]
+    subgraph Agent_Orch[" LangGraph Agentic Reasoning (src/agents/)"]
+        Graph["• Researcher Agent (Metabolic Liability Scan)<br/>• Critic Agent (ADMET Guardrails & Syntheticity)<br/>• Bioisostere Generation Node (Llama 3.3 70B via Groq)"]
+    end
+
+    subgraph DB_Layer[" Neon PostgreSQL Storage Tier (pgvector)"]
+        DB[("• RAG Vector Embeddings (pgvector)<br/>• SAR Transformation Memory<br/>• Audit Logs & Benchmark Metrics")]
     end
 
     subgraph Governance[" Human-in-the-Loop RBAC System"]
         HITL["• Role Verification (senior_chemist / lead_chemist / junior_analyst)<br/>• Synthesis & Docking Approval Workflow"]
     end
 
-    UI_Layer -->|"HTTP POST (Payload: SMILES, Target, Role)"| API_Layer
+    UI_Layer -->|"HTTPS POST (SMILES, Target Protein, Role)"| API_Layer
     API_Layer --> Comp_Engine
     API_Layer --> Agent_Orch
-    Comp_Engine -->|"Combined JSON Response Payload"| Governance
-    Agent_Orch -->|"Combined JSON Response Payload"| Governance
+    Agent_Orch <-->|"Vector Search / Context Retrieval"| DB_Layer
+    Comp_Engine -->|"Combined Payload"| Governance
+    Agent_Orch -->|"Combined Payload"| Governance
 ```
+
 ## Layer-by-Layer Tech Stack Breakdown
 1. Presentation & Visualization Layer (src/ui/)
 Streamlit: Interactive web application framework.
