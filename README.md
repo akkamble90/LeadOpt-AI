@@ -57,35 +57,41 @@ graph TD
 ```
 
 ## Layer-by-Layer Tech Stack Breakdown
-1. Presentation & Visualization Layer (src/ui/)
-Streamlit: Interactive web application framework.
 
-py3Dmol & stmol: WebGL-based 3D macromolecular rendering of RCSB PDB protein binding pockets and drug conformations.
+## 1.Presentation & Visualization Layer (src/ui/)
+Streamlit Cloud: Serverless cloud hosting for the interactive frontend dashboard.
 
-RDKit Canvas Draw: Server-side 2D vector rendering of chemical structures and bioisostere analogs.
+py3Dmol & stmol: WebGL-accelerated 3D macromolecular visualization for target protein pockets (RCSB PDB).
 
-2. API Gateway & Security Layer (src/api/ & src/security/)
+RDKit Canvas Draw: Server-side 2D vector rendering for chemical structures and generated bioisosteres.
+
+## 2. API Gateway & Security Layer (src/api/ & src/security/)
 FastAPI: Asynchronous, high-performance Python REST API gateway.
 
 Pydantic: Strict schema definitions and runtime data validation.
 
 ChemicalPromptGuard: Domain-specific security guardrail evaluating input SMILES for restricted toxicophores and non-compliant prompt injection attempts.
 
-3. Computational Chemistry & Physics Engine (src/tools/)
-RDKit: Molecular descriptor calculations (LogP, MW, TPSA, Rotatable Bonds, H-Bond Donors/Acceptors).
+## 3. Agentic AI & RAG (src/agents/)
+LangGraph: Stateful, cyclic multi-agent execution graph orchestrating domain agents.
 
-PubChem PUG-REST API: Real-time chemical name resolution to canonical SMILES strings.
+Groq API (Llama 3.3 70B Versatile): Ultra-low-latency LLM engine powering multi-agent reasoning nodes.
 
-RCSB PDB API: Automated fetching of co-crystallized target protein-ligand active site coordinates.
+Researcher Agent: Identifies metabolic liabilities (e.g., carboxylic acid toxicity, ester hydrolysis).
 
-4. Agentic AI & Governance Layer (src/agents/)
-LangGraph: Stateful multi-agent cyclic execution graph.
+Critic Agent: Enforces synthetic accessibility, Lipinski rule compliance, and steric pocket constraints.
 
-Researcher Agent: Identifies metabolic liabilities (e.g., ester hydrolysis, carboxylic acid toxicity).
+## 4. Database & Storage Layer (src/db/)
+Neon PostgreSQL: Serverless cloud PostgreSQL instance with pooled connection support.
 
-Critic Agent: Verifies syntheticity, Lipinski compliance, and steric constraints.
+pgvector Extension: Vector similarity search engine storing chemical transformation embeddings and SAR literature contexts.
 
-Role-Based Access Control (RBAC): Restricts high-cost molecular dynamics docking sign-offs to verified roles (senior_chemist).
+## 5. Computational Chemistry Engine (src/tools/)
+RDKit: Comprehensive property calculation (LogP, TPSA, Molecular Weight, H-Bond Donors/Acceptors).
+
+PubChem PUG-REST API: Automated chemical name resolution to canonical SMILES strings.
+
+RCSB PDB API: Direct coordinate retrieval for target active sites.
 
 ---
 ##  Evaluation Metrics & Quantitative Optimization Scope
@@ -206,6 +212,23 @@ Install the required dependencies:
 pip install -r requirements.txt
 ```
 
+Environmental variables
+```bash
+# FastAPI & Database Settings
+DATABASE_URL=postgresql://neondb_owner:<PASSWORD>@<HOST>/neondb?sslmode=require
+POSTGRES_HOST=<HOST>
+POSTGRES_DB=neondb
+POSTGRES_USER=neondb_owner
+POSTGRES_PASSWORD=<PASSWORD>
+POSTGRES_PORT=5432
+
+# LLM & Agent Settings
+GROQ_API_KEY=<Your_API_key>
+PRIMARY_MODEL=<Model_name>
+
+# Streamlit Frontend Settings
+BACKEND_URL=[https://leadopt-ai.onrender.com](https://leadopt-ai.onrender.com)
+```
 ### 2. Launch the FastAPI Backend
 
 From the project root, start the FastAPI backend:
