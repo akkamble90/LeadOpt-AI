@@ -13,9 +13,9 @@ By combining RDKit computational chemistry engines with a cyclic LangGraph multi
 | :---: | :---: |
 | ![Calculated Properties](data/screenshot/ADMET_Properties.png) | ![Agent Strategy](data/screenshot/Proposed_Analogs.png) |
 
-| Tab 2: 2D Bioisostere Visualizer |
+| Tab 2: 2D Bioisostere Visualizer | Tab 4: System Benchmark |
 | :---: | :---: |
-| ![Analog Visualizer](data/screenshot/Structure.png) | 
+| ![Analog Visualizer](data/screenshot/Structure.png) | ![Agent Strategy](data/screenshot/System_Benchmark.png) |
 
 
 
