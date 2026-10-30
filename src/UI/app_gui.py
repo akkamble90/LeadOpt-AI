@@ -4,6 +4,9 @@ from rdkit import Chem
 from rdkit.Chem import Draw, AllChem
 from stmol import showmol
 import py3Dmol
+import os 
+
+BACKEND_URL = st.secrets.get("BACKEND_URL", os.getenv("BACKEND_URL", "https://leadopt-ai.onrender.com")).rstrip("/")
 
 # Set page config
 st.set_page_config(page_title="LeadOpt-AI Copilot", layout="wide")
@@ -164,7 +167,7 @@ if st.button(" Run Lead Optimization Engine"):
                 "target_protein": target_protein,
                 "user_role": user_role
             }
-            res = requests.post("http://127.0.0.1:8000/api/v1/optimize", json=payload)
+            res = requests.post(f"{BACKEND_URL}/api/v1/optimize", json=payload)
             
             if res.status_code == 200:
                 data = res.json()
