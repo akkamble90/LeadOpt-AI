@@ -32,13 +32,14 @@ By combining RDKit computational chemistry engines with a cyclic LangGraph multi
 ##  System Architecture & Data Motion Flowchart
 
 ```mermaid
+%%{init: {'flowchart': {'htmlLabels': false}}}%%
 graph TD
     subgraph UI_Layer[" Streamlit Cloud Presentation Tier (src/UI/app_gui.py)"]
         direction TB
-        UI1["• PubChem SMILES <br/>Auto-Lookup"]
-        UI2["• 2D RDKit Vector<br/>Structure Renderer"]
-        UI3["• WebGL 3D Py3Dmol<br/>Active Site Viewer"]
-        UI4["• Dynamic Secret<br/>Resolution (BACKEND_URL)"]
+        UI1["• PubChem SMILES Auto-Lookup"]
+        UI2["• 2D RDKit Vector Structure Renderer"]
+        UI3["• WebGL 3D Py3Dmol Active Site Viewer"]
+        UI4["• Dynamic Secret Resolution (BACKEND_URL)"]
     end
 
     subgraph API_Layer[" Render API Gateway Tier (src/api/)"]
