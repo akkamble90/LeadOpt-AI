@@ -32,7 +32,11 @@ By combining RDKit computational chemistry engines with a cyclic LangGraph multi
 ```mermaid
 graph TD
     subgraph UI_Layer[" Streamlit Cloud Presentation Tier (src/UI/app_gui.py)"]
-        UI["• PubChem SMILES Auto-Lookup<br/>• 2D RDKit Vector Structure Renderer<br/>• WebGL 3D Py3Dmol Active Site Viewer<br/>• Dynamic Secret Resolution (BACKEND_URL)"]
+        direction TB
+        UI1["• PubChem SMILES Auto-Lookup"]
+        UI2["• 2D RDKit Vector Structure Renderer"]
+        UI3["• WebGL 3D Py3Dmol Active Site Viewer"]
+        UI4["• Dynamic Secret Resolution (BACKEND_URL)"]
     end
 
     subgraph API_Layer[" Render API Gateway Tier (src/api/)"]
